@@ -45,12 +45,12 @@ output "database_character_set" {
 
 output "rds_account_name" {
   description = "The name of the RDS account"
-  value       = alicloud_rds_account.create_db_user.account_name
+  value       = alicloud_rds_account.rds_account.account_name
 }
 
 output "rds_account_status" {
   description = "The status of the RDS account"
-  value       = alicloud_rds_account.create_db_user.status
+  value       = alicloud_rds_account.rds_account.status
 }
 
 output "ros_stack_id" {
