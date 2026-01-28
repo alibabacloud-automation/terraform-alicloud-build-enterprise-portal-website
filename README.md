@@ -2,7 +2,7 @@ Terraform module for building enterprise website infrastructure on Alibaba Cloud
 
 # terraform-alicloud-build-enterprise-portal-website
 
-English | [简体中文](https://github.com/alibabacloud-automation/terraform-alicloud-build-enterprise-portal-website/blob/master/README-CN.md)
+English | [简体中文](https://github.com/alibabacloud-automation/terraform-alicloud-build-enterprise-portal-website/blob/main/README-CN.md)
 
 This Terraform module creates a complete enterprise website infrastructure on Alibaba Cloud, including VPC, RDS MySQL database, and Mobi low-code development platform integration. It provides a comprehensive solution for building modern enterprise websites with database backend and visual development capabilities.
 

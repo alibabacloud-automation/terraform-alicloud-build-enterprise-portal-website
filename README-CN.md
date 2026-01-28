@@ -2,7 +2,7 @@
 
 # terraform-alicloud-build-enterprise-portal-website
 
-[English](https://github.com/alibabacloud-automation/terraform-alicloud-build-enterprise-portal-website/blob/master/README.md) | 简体中文
+[English](https://github.com/alibabacloud-automation/terraform-alicloud-build-enterprise-portal-website/blob/main/README.md) | 简体中文
 
 本 Terraform 模块在阿里云上创建完整的企业网站基础设施，包括 VPC、RDS MySQL 数据库以及魔笔低代码开发平台集成。它为构建具有数据库后端和可视化开发功能的现代企业网站提供了全面的解决方案。
 
