@@ -25,7 +25,7 @@ locals {
           "AppType": "Web",
           "Template": {
             "TemplateId": "e1e78223-38c4-4184-972c-ac0eead93e11",
-            "ConnectionsContent": "[{\n  \"name\": \"企业官网模板_${var.ros_stack_config.stack_name}\",\n  \"connectorType\": {\n    \"kind\": \"mysql\",\n    \"name\": \"mysql\"\n  },\n  \"folderId\": \"/\",\n  \"resourceRequirementId\": \"7dfe969b-1d54-4cbc-a8fd-209000b30ad0\",\n  \"resourceObject\": {\n    \"version\": \"1.0\",\n    \"id\": \"7dfe969b-1d54-4cbc-a8fd-209000b30ad0\",\n    \"name\": \"企业官网模板_20241203160633\",\n    \"type\": \"sql\",\n    \"subType\": \"mysql\",\n    \"connectionTemplates\": {\n      \"dev\": {\n        \"host\": \"${alicloud_db_connection.rds_connection.connection_string}\",\n        \"port\": 3306,\n        \"database\": \"${alicloud_db_database.rds_database.data_base_name}\",\n        \"username\": \"${alicloud_rds_account.create_db_user.account_name}\",\n        \"password\": \"${alicloud_rds_account.create_db_user.account_password}\"\n      },\n      \"product\": {\n        \"host\": \"${alicloud_db_connection.rds_connection.connection_string}\",\n        \"port\": 3306,\n        \"database\": \"${alicloud_db_database.rds_database.data_base_name}\",\n        \"username\": \"${alicloud_rds_account.create_db_user.account_name}\",\n        \"password\": \"${alicloud_rds_account.create_db_user.account_password}\"\n      }\n    }\n  }\n}]"
+            "ConnectionsContent": "[{\n  \"name\": \"企业官网模板_${var.ros_stack_config.stack_name}\",\n  \"connectorType\": {\n    \"kind\": \"mysql\",\n    \"name\": \"mysql\"\n  },\n  \"folderId\": \"/\",\n  \"resourceRequirementId\": \"7dfe969b-1d54-4cbc-a8fd-209000b30ad0\",\n  \"resourceObject\": {\n    \"version\": \"1.0\",\n    \"id\": \"7dfe969b-1d54-4cbc-a8fd-209000b30ad0\",\n    \"name\": \"企业官网模板_20241203160633\",\n    \"type\": \"sql\",\n    \"subType\": \"mysql\",\n    \"connectionTemplates\": {\n      \"dev\": {\n        \"host\": \"${alicloud_db_connection.rds_connection.connection_string}\",\n        \"port\": 3306,\n        \"database\": \"${alicloud_db_database.rds_database.data_base_name}\",\n        \"username\": \"${alicloud_rds_account.rds_account.account_name}\",\n        \"password\": \"${alicloud_rds_account.rds_account.account_password}\"\n      },\n      \"product\": {\n        \"host\": \"${alicloud_db_connection.rds_connection.connection_string}\",\n        \"port\": 3306,\n        \"database\": \"${alicloud_db_database.rds_database.data_base_name}\",\n        \"username\": \"${alicloud_rds_account.rds_account.account_name}\",\n        \"password\": \"${alicloud_rds_account.rds_account.account_password}\"\n      }\n    }\n  }\n}]"
          }
         }
       }
@@ -68,7 +68,7 @@ resource "alicloud_db_database" "rds_database" {
 }
 
 # RDS account definition
-resource "alicloud_rds_account" "create_db_user" {
+resource "alicloud_rds_account" "rds_account" {
   db_instance_id   = alicloud_db_instance.rds_instance.id
   account_name     = var.rds_account_config.account_name
   account_password = var.rds_account_config.account_password
@@ -76,7 +76,7 @@ resource "alicloud_rds_account" "create_db_user" {
 }
 
 resource "alicloud_db_connection" "rds_connection" {
-  depends_on        = [alicloud_rds_account.create_db_user]
+  depends_on        = [alicloud_rds_account.rds_account]
   instance_id       = alicloud_db_instance.rds_instance.id
   connection_prefix = var.db_connection_config.connection_prefix
 }
