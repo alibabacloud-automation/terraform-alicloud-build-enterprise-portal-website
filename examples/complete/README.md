@@ -28,33 +28,22 @@ This example creates the following resources:
    cd examples/complete
    ```
 
-2. Create a `terraform.tfvars` file with your specific values:
-   ```hcl
-   region             = "cn-hangzhou"
-   app_name           = "my-website"
-   vpc_cidr_block     = "192.168.0.0/16"
-   vswitch_cidr_block = "192.168.1.0/24"
-   db_user_name       = "admin"
-   db_password        = "YourSecurePassword123!"
-   db_name            = "website_db"
-   ```
-
-3. Initialize Terraform:
+2. Initialize Terraform:
    ```bash
    terraform init
    ```
 
-4. Plan the deployment:
+3. Plan the deployment:
    ```bash
    terraform plan
    ```
 
-5. Apply the configuration:
+4. Apply the configuration:
    ```bash
    terraform apply
    ```
 
-6. After successful deployment, you can access the Mobi console using the provided URL to manage your low-code application.
+5. After successful deployment, you can access the Mobi console using the provided URL to manage your low-code application.
 
 ## Important Notes
 
@@ -71,14 +60,55 @@ To destroy the created resources:
 terraform destroy
 ```
 
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_alicloud"></a> [alicloud](#provider\_alicloud) | n/a |
+| <a name="provider_random"></a> [random](#provider\_random) | n/a |
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_build_website"></a> [build\_website](#module\_build\_website) | ../../ | n/a |
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [random_integer.app_name_random](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/integer) | resource |
+| [alicloud_db_instance_classes.default](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/data-sources/db_instance_classes) | data source |
+| [alicloud_db_zones.default](https://registry.terraform.io/providers/aliyun/alicloud/latest/docs/data-sources/db_zones) | data source |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_app_name"></a> [app\_name](#input\_app\_name) | Application name prefix for all resources. | `string` | `"mobi-app"` | no |
+| <a name="input_db_name"></a> [db\_name](#input\_db\_name) | Name of the database to create. | `string` | `"db_name"` | no |
+| <a name="input_db_password"></a> [db\_password](#input\_db\_password) | Password for the database account. | `string` | `"tf_example123"` | no |
+| <a name="input_db_user_name"></a> [db\_user\_name](#input\_db\_user\_name) | Username for the database account. | `string` | `"db_user"` | no |
+| <a name="input_region"></a> [region](#input\_region) | The region where resources will be created. | `string` | `"eu-central-1"` | no |
+| <a name="input_vpc_cidr_block"></a> [vpc\_cidr\_block](#input\_vpc\_cidr\_block) | CIDR block for the VPC. | `string` | `"192.168.0.0/16"` | no |
+| <a name="input_vswitch_cidr_block"></a> [vswitch\_cidr\_block](#input\_vswitch\_cidr\_block) | CIDR block for the VSwitch. | `string` | `"192.168.1.0/24"` | no |
+
 ## Outputs
 
-After successful deployment, the following outputs will be available:
-
-- `vpc_id`: The ID of the created VPC
-- `vswitch_id`: The ID of the created VSwitch
-- `rds_instance_id`: The ID of the RDS instance
-- `rds_connection_string`: The connection string for the database
-- `database_name`: The name of the created database
-- `ros_stack_id`: The ID of the ROS stack
-- `mobi_console_url`: The URL to access the Mobi console
+| Name | Description |
+|------|-------------|
+| <a name="output_database_name"></a> [database\_name](#output\_database\_name) | The name of the created database |
+| <a name="output_mobi_console_url"></a> [mobi\_console\_url](#output\_mobi\_console\_url) | The URL of the Mobi console |
+| <a name="output_rds_connection_string"></a> [rds\_connection\_string](#output\_rds\_connection\_string) | The connection string of the RDS instance |
+| <a name="output_rds_instance_id"></a> [rds\_instance\_id](#output\_rds\_instance\_id) | The ID of the RDS instance |
+| <a name="output_ros_stack_id"></a> [ros\_stack\_id](#output\_ros\_stack\_id) | The ID of the ROS stack |
+| <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | The ID of the VPC |
+| <a name="output_vswitch_id"></a> [vswitch\_id](#output\_vswitch\_id) | The ID of the VSwitch |
+<!-- END_TF_DOCS -->
